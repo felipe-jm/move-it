@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 import challenges from '../../challenges.json';
 
@@ -17,6 +17,7 @@ type ChallengesContextData = {
   levelUp: () => void;
   startNewChallenge: () => void;
   resetChallenge: () => void;
+  completeChallenge: () => void;
 };
 
 export const ChallengesContext = createContext<ChallengesContextData>({
@@ -27,7 +28,8 @@ export const ChallengesContext = createContext<ChallengesContextData>({
   activeChallenge: null,
   levelUp: () => undefined,
   startNewChallenge: () => undefined,
-  resetChallenge: () => undefined
+  resetChallenge: () => undefined,
+  completeChallenge: () => undefined
 });
 
 type ChallengesProviderProps = {
@@ -45,6 +47,10 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
+  useEffect(() => {
+    Notification.requestPermission();
+  }, []);
+
   function levelUp() {
     setLevel(level + 1);
   }
@@ -54,10 +60,35 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
     const challenge = challenges[randomChallengeIndex] as Challenge;
 
     setActiveChallenge(challenge);
+
+    new Audio('/notification.mp3').play();
+
+    if (Notification.permission === 'granted') {
+      new Notification('Novo desafio 🎉', {
+        body: `valendo ${challenge.amount} xp`
+      });
+    }
   }
 
   function resetChallenge() {
     setActiveChallenge(null);
+  }
+
+  function completeChallenge() {
+    if (!activeChallenge) return;
+
+    const { amount } = activeChallenge;
+
+    let finalExperience = currenteExperience + amount;
+
+    if (finalExperience >= experienceToNextLevel) {
+      finalExperience = finalExperience - experienceToNextLevel;
+      levelUp();
+    }
+
+    setCurrenteExperience(finalExperience);
+    setActiveChallenge(null);
+    setChallengesCompleted(challengesCompleted + 1);
   }
 
   return (
@@ -70,7 +101,8 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
         activeChallenge,
         levelUp,
         startNewChallenge,
-        resetChallenge
+        resetChallenge,
+        completeChallenge
       }}
     >
       {children}
