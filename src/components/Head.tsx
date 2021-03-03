@@ -13,10 +13,10 @@ interface HeadProps {
 
 const Head: React.FC<HeadProps> = ({
   title = 'Move it',
-  color = '#fff',
+  color = '#5965e0',
   description = 'Você mais saudável a cada dia',
   url = 'https://moveit-you.vercel.app',
-  image = '/logos/logo-full.svg',
+  image = 'https://repository-images.githubusercontent.com/341594210/556e4180-7c02-11eb-9896-708d87ba10be',
   withoutSuffix = false
 }) => {
   if (description.length > 150) {
@@ -38,7 +38,7 @@ const Head: React.FC<HeadProps> = ({
       <meta name="og:type" content="website" />
       <meta name="og:url" content={url} />
       <meta name="og:image" content={image} />
-      <meta name="og:site_name" content="Meu Trampo" />
+      <meta name="og:site_name" content="Move it" />
       <meta name="og:description" content={description} />
     </NextHead>
   );
