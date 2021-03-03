@@ -40,6 +40,8 @@ const Head: React.FC<HeadProps> = ({
       <meta name="og:image" content={image} />
       <meta name="og:site_name" content="Move it" />
       <meta name="og:description" content={description} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
     </NextHead>
   );
 };
