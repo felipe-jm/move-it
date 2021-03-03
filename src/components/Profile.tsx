@@ -10,6 +10,8 @@ const Profile = () => {
 
   const { level } = useContext(ChallengesContext);
 
+  if (!session) return null;
+
   return (
     <div className={styles.profileContainer}>
       <img src={session.user.image} alt={session.user.name} />

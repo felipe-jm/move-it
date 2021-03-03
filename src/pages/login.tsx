@@ -1,9 +1,19 @@
-import { signIn } from 'next-auth/client';
+import { GetServerSideProps } from 'next';
+import {
+  getSession,
+  signIn,
+  providers,
+  SessionProvider
+} from 'next-auth/client';
 
 import Head from '../components/Head';
 import styles from '../styles/pages/Login.module.css';
 
-const Login = () => (
+type LoginProps = {
+  [provider: string]: SessionProvider;
+};
+
+const Login = ({ providers }: LoginProps) => (
   <>
     <Head title="Login" />
 
@@ -26,10 +36,29 @@ const Login = () => (
           <p>Faça login com seu Github para começar</p>
         </main>
 
-        <button onClick={() => signIn()}>Entrar</button>
+        <button onClick={() => signIn(providers.github.id)}>Entrar</button>
       </div>
     </div>
   </>
 );
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    };
+  }
+
+  return {
+    props: {
+      providers: await providers()
+    }
+  };
+};
 
 export default Login;
