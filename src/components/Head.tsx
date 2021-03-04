@@ -14,7 +14,7 @@ interface HeadProps {
 const Head: React.FC<HeadProps> = ({
   title = 'Move it',
   color = '#5965e0',
-  description = 'Você mais saudável a cada dia',
+  description = 'A Move it ajuda você a evitar futuros problemas de saúde',
   url = 'https://moveit-you.vercel.app',
   image = 'https://repository-images.githubusercontent.com/341594210/556e4180-7c02-11eb-9896-708d87ba10be',
   withoutSuffix = false

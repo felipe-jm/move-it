@@ -1,0 +1,22 @@
+{
+  "name": "Move it",
+  "short_name": "Move it",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#5965e0",
+  "description": "",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
