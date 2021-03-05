@@ -59,7 +59,6 @@
   transition: background-color 0.2s;
 }
 
-
 .countdownButton:not(:disabled):hover {
   background: var(--blue-dark);
 }
@@ -78,4 +77,16 @@
   background: var(--white);
   color: var(--text);
   cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .countdownContainer > div {
+    font-size: 7rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .countdownContainer > div {
+    font-size: 5rem;
+  }
 }

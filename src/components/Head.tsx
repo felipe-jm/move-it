@@ -37,11 +37,15 @@ const Head: React.FC<HeadProps> = ({
       <meta name="og:title" content={title} />
       <meta name="og:type" content="website" />
       <meta name="og:url" content={url} />
-      <meta name="og:image" content={image} />
       <meta name="og:site_name" content="Move it" />
       <meta name="og:description" content={description} />
+
+      <meta name="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:secure_url" content={image} />
+      <meta property="og:image:alt" content="Thumbnail" />
+      <meta property="og:image:type" content="image/png" />
     </NextHead>
   );
 };
