@@ -1,10 +1,9 @@
 import { signOut } from 'next-auth/client';
 import Link from 'next/link';
 
-import styles from '../styles/components/Sidebar.module.css';
-
+import * as S from './styles';
 const Sidebar = () => (
-  <div className={styles.container}>
+  <S.Container>
     <nav>
       <Link href="/">
         <a>
@@ -16,7 +15,7 @@ const Sidebar = () => (
         <span id="text-red">Sair</span>
       </div>
     </nav>
-  </div>
+  </S.Container>
 );
 
 export default Sidebar;

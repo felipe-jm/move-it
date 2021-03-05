@@ -6,8 +6,9 @@ import {
   SessionProvider
 } from 'next-auth/client';
 
-import Head from '../components/Head';
-import styles from '../styles/pages/Login.module.css';
+import Head from 'components/Head';
+
+import styles from 'styles/pages/Login.module.css';
 
 type LoginProps = {
   [provider: string]: SessionProvider;

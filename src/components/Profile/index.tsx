@@ -2,9 +2,9 @@ import { useSession } from 'next-auth/client';
 
 import { useContext } from 'react';
 
-import { ChallengesContext } from '../contexts/ChallengesContext';
-import styles from '../styles/components/Profile.module.css';
+import { ChallengesContext } from 'contexts/ChallengesContext';
 
+import * as S from './styles';
 const Profile = () => {
   const [session] = useSession();
 
@@ -13,7 +13,7 @@ const Profile = () => {
   if (!session) return null;
 
   return (
-    <div className={styles.profileContainer}>
+    <S.Container>
       <img src={session.user.image} alt={session.user.name} />
       <div>
         <strong>{session.user.name} </strong>
@@ -22,7 +22,7 @@ const Profile = () => {
           Level {level}
         </p>
       </div>
-    </div>
+    </S.Container>
   );
 };
 
